@@ -1,5 +1,5 @@
 % theGroups = {'H','N2','dpy'};
-theGroups = {'H','N2','dpy','trp','unc','unc_38'}; % this is all of them.
+theGroups = {'H','N2','dpy_20','unc_9','unc_38'}; % this is all of them.
 theFiltering = 'both'; % 'neither', 'locdep', 'lengthdep', 'both'
 [normalizedFileName,filteredFileName] = doFilter(theGroups,theFiltering);
 doNull = 0; % can switch on to get significance

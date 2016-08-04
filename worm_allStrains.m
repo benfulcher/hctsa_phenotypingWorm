@@ -1,7 +1,7 @@
 % worm_allStrains
 % script to compare all strains of worm
 
-theGroups = {'H','N2','dpy','trp','unc','unc_38'}; % this is all of them.
+theGroups = {'H','N2','dpy_20','unc_9','unc_38'}; % this is all of them.
 theFiltering = 'both'; % 'neither', 'locdep', 'lengthdep', 'both'
 [normalizedFileName,filteredFileName] = doFilter(theGroups,theFiltering);
 

@@ -6,10 +6,13 @@
 % theGroups = {'H','N2'};
 % theGroups = {'H','N2','dpy'};
 
-
-theFiltering = 'both'; % 'neither', 'locdep', 'lengthdep', 'both'
+theGroups = {'H','N2','dpy_20','unc_9','unc_38'}; % this is all of them.
+theFiltering = 'neither'; % 'neither', 'locdep', 'lengthdep', 'both'
 
 [normalizedFileName,filteredFileName] = doFilter(theGroups,theFiltering);
+
+%-------------------------------------------------------------------------------
+TS_plot_timeseries(normalizedFileName,3,[],[])
 
 %-------------------------------------------------------------------------------
 % Classic analyses using the normalized data
@@ -17,8 +20,14 @@ theFiltering = 'both'; % 'neither', 'locdep', 'lengthdep', 'both'
 TS_classify(normalizedFileName)
 annotateParams = struct('n',12,'textAnnotation','none','userInput',0,'maxL',1500);
 TS_plot_pca(normalizedFileName,1,'',annotateParams)
-TS_TopFeatures(normalizedFileName,'fast_linear',0,'numHistogramFeatures',20)
-TS_ForwardFS(normalizedFileName)
+doNull = 1;
+TS_TopFeatures(filteredFileName,'fast_linear',doNull,'numTopFeatures',30,'numHistogramFeatures',15)
+TS_ForwardFS(filteredFileName)
+
+TS_plot_DataMatrix(normalizedFileName,'colorGroups',1,'groupReorder',1)
+
+% Top feature space?:
+TS_ForwardFS(filteredFileName,[],'diaglinear',5,2)
 
 %-------------------------------------------------------------------------------
 % Species analysis:

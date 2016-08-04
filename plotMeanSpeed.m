@@ -1,7 +1,7 @@
-function plotMeanSpeed(theGroups)
+function plotMeanSpeed()
 
 % if nargin < 1
-    theGroups = {'H','N2','dpy','trp','unc','unc_38'};
+    theGroups = {'H','N2','dpy_20','unc_9','unc_38'}; % this is all of them.
 % end
 
 theDataFile = 'HCTSA.mat';
@@ -15,6 +15,7 @@ theDataFile = 'HCTSA.mat';
 load(filteredFileName,'Operations');
 isMean = find(strcmp({Operations.Name},'mean'));
 TS_SingleFeature(filteredFileName,isMean,1);
+ylim([0,250])
 
 % load(filteredFileName,'TS_DataMat','Operations','TimeSeries','groupNames');
 % isMean = find(strcmp({Operations.Name},'mean'));
