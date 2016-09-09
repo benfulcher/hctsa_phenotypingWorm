@@ -10,22 +10,27 @@ theFiltering = 'neither'; % 'neither', 'locdep', 'lengthdep', 'both'
 %-------------------------------------------------------------------------------
 % Filter features and normalize:
 [normalizedFileName,filteredFileName] = doFilter(theGroups,theFiltering);
+normalizedData = load(normalizedFileName);
+filteredData = load(filteredFileName);
 
 %-------------------------------------------------------------------------------
 % Plot some examples of each class:
-TS_plot_timeseries(normalizedFileName,3,[],[])
+numPerClass = 3;
+TS_plot_timeseries(normalizedData,numPerClass,[],[])
 
 %-------------------------------------------------------------------------------
 % Determine classification rate:
-TS_classify(normalizedFileName)
+whatClassifier = 'svm_linear';
+doPCs = 0; % see whether similar classification accuracy can be gained using reduced PCs
+TS_classify(normalizedData,whatClassifier,doPCs)
 
 %-------------------------------------------------------------------------------
-% What are some of the top features:
+% What are some of the top features?:
 doNull = 0; % can switch on to get significance
 TS_TopFeatures(filteredFileName,'fast_linear',doNull,'numHistogramFeatures',40)
 
 %-------------------------------------------------------------------------------
-% Produce an annotated PCA plot:
+% Produce an annotated PCA plot, noticing class structure
 annotateParams = struct('n',12,'textAnnotation','none','userInput',0,'maxL',1500);
 TS_plot_pca(normalizedFileName,1,'',annotateParams)
 
