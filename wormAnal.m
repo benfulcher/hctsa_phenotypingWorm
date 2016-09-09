@@ -27,20 +27,23 @@ TS_classify(normalizedData,whatClassifier,doPCs)
 %-------------------------------------------------------------------------------
 % What are some of the top features?:
 doNull = 0; % can switch on to get significance
-TS_TopFeatures(filteredFileName,'fast_linear',doNull,'numHistogramFeatures',40)
+TS_TopFeatures(filteredData,'fast_linear',doNull,'numHistogramFeatures',40)
 
 %-------------------------------------------------------------------------------
 % Produce an annotated PCA plot, noticing class structure
 annotateParams = struct('n',12,'textAnnotation','none','userInput',0,'maxL',1500);
-TS_plot_pca(normalizedFileName,1,'',annotateParams)
+TS_plot_pca(normalizedData,1,'',annotateParams)
 
 %-------------------------------------------------------------------------------
 % Visualize the data matrix colored by strain
-TS_plot_DataMatrix(normalizedFileName,'colorGroups',1,'groupReorder',1)
+% (kind of requires TS_cluster to look nice, though, and then loading in the
+% clustered data):
+TS_cluster('none',[],'corr','average',[0,1],normalizedFileName);
+TS_plot_DataMatrix('cl','colorGroups',1,'groupReorder',1)
 
 %-------------------------------------------------------------------------------
 % Top feature space?:
-TS_ForwardFS(filteredFileName,[],'diaglinear',5,2)
+TS_ForwardFS(filteredData,[],'diaglinear',5,2)
 
 %-------------------------------------------------------------------------------
 % [~,restrictedFileName] = TS_LabelGroups(theGroups,'raw',1,1);
