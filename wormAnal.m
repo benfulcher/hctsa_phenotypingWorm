@@ -1,49 +1,46 @@
 %-------------------------------------------------------------------------------
-% Parameters:
+% Set parameters:
 %-------------------------------------------------------------------------------
-% theGroups = {'H','N2','unc'};
-% theGroups = {'H','trp','unc'};
-% theGroups = {'H','N2'};
-% theGroups = {'H','N2','dpy'};
-
+% Set labels to assign to time series (strains/genotypes):
 theGroups = {'H','N2','dpy_20','unc_9','unc_38'}; % this is all of them.
+
+% Set filtering to perform on features (e.g., exclude location or length dependent features):
 theFiltering = 'neither'; % 'neither', 'locdep', 'lengthdep', 'both'
 
+%-------------------------------------------------------------------------------
+% Filter features and normalize:
 [normalizedFileName,filteredFileName] = doFilter(theGroups,theFiltering);
 
 %-------------------------------------------------------------------------------
+% Plot some examples of each class:
 TS_plot_timeseries(normalizedFileName,3,[],[])
 
 %-------------------------------------------------------------------------------
-% Classic analyses using the normalized data
-%-------------------------------------------------------------------------------
+% Determine classification rate:
 TS_classify(normalizedFileName)
+
+%-------------------------------------------------------------------------------
+% What are some of the top features:
+doNull = 0; % can switch on to get significance
+TS_TopFeatures(filteredFileName,'fast_linear',doNull,'numHistogramFeatures',40)
+
+%-------------------------------------------------------------------------------
+% Produce an annotated PCA plot:
 annotateParams = struct('n',12,'textAnnotation','none','userInput',0,'maxL',1500);
 TS_plot_pca(normalizedFileName,1,'',annotateParams)
-doNull = 1;
-TS_TopFeatures(filteredFileName,'fast_linear',doNull,'numTopFeatures',30,'numHistogramFeatures',15)
-TS_ForwardFS(filteredFileName)
 
+%-------------------------------------------------------------------------------
+% Visualize the data matrix colored by strain
 TS_plot_DataMatrix(normalizedFileName,'colorGroups',1,'groupReorder',1)
 
+%-------------------------------------------------------------------------------
 % Top feature space?:
 TS_ForwardFS(filteredFileName,[],'diaglinear',5,2)
 
 %-------------------------------------------------------------------------------
-% Species analysis:
-%-------------------------------------------------------------------------------
-% TS_LabelGroups({'H','N2','dpy'},'raw');
-% TS_LabelGroups({'H','N2','dpy','trp','unc','unc_38'},'raw');
-% TS_LabelGroups({'H','N2','trp','unc'},'raw');
-% TS_normalize('scaledRobustSigmoid',[0.5,1])
-% TS_classify
-% TS_plot_pca
-% TS_TopFeatures
-
-%-------------------------------------------------------------------------------
-[~,restrictedFileName] = TS_LabelGroups(theGroups,'raw',1,1);
-normalizedFileName = TS_normalize('none',[0.5,1],restrictedFileName);
-TS_TopFeatures('HCTSA_filtered_N.mat','fast_linear',0)
+% [~,restrictedFileName] = TS_LabelGroups(theGroups,'raw',1,1);
+% normalizedFileName = TS_normalize('none',[0.5,1],restrictedFileName);
+% TS_TopFeatures('HCTSA_filtered_N.mat','fast_linear',0)
 
 % %-------------------------------------------------------------------------------
 % % Forward feature selection:

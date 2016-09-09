@@ -1,9 +1,7 @@
 function plotMeanSpeed()
+% Plots the distribution of mean speed across the strains
 
-% if nargin < 1
-    theGroups = {'H','N2','dpy_20','unc_9','unc_38'}; % this is all of them.
-% end
-
+theGroups = {'H','N2','dpy_20','unc_9','unc_38'}; % this is all of them.
 theDataFile = 'HCTSA.mat';
 
 % First filter the data
