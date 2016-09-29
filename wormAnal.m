@@ -44,4 +44,4 @@ TS_plot_DataMatrix('cl','colorGroups',1,'groupReorder',1)
 %-------------------------------------------------------------------------------
 % Top feature space? (slow, not fully functional):
 annotateParams = struct('n',12,'textAnnotation','none','userInput',0,'maxL',1500);
-TS_ForwardFS(normalizedData,[],'fast_linear',5,2);
+TS_ForwardFS(normalizedData,[],'fast_linear',5,2,annotateParams);
