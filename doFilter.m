@@ -1,6 +1,11 @@
-function [normalizedFileName,filteredFileName] = doFilter(theGroups,theFiltering)
+function [normalizedFileName,filteredFileName] = doFilter(theGroups,theFiltering,classVarFilter)
 
-classVarFilter = 1;
+%-------------------------------------------------------------------------------
+% Check inputs:
+%-------------------------------------------------------------------------------
+if nargin < 3
+    classVarFilter = 1; % features with zero variance within a labeled class are removed
+end
 
 %-------------------------------------------------------------------------------
 % Filter the time-series data to the restricted set of labels first:
@@ -32,7 +37,8 @@ end
 %-------------------------------------------------------------------------------
 % Now normalize:
 normalizedFileName = TS_normalize('scaledRobustSigmoid',[0.5,1],filteredFileName,classVarFilter);
-system(sprintf('cp %s HCTSA_filterConstant.mat',filteredFileName));
+% copyfile(filteredFileName,'HCTSA_filterConstant.mat');
+system(sprintf('cp %s HCTSA_filterConstant.mat',filteredFileName)); % if using non-bash shell
 filteredFileName = TS_normalize('none',[0.5,1],'HCTSA_filterConstant.mat',classVarFilter);
 
 end

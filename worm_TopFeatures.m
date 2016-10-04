@@ -3,23 +3,25 @@
 %-------------------------------------------------------------------------------
 % Preliminary labeling, filtering, normalization
 theGroups = {'H','N2','dpy_20','unc_9','unc_38'}; % this is all of them.
-theFiltering = 'neither'; % 'neither', 'locdep', 'lengthdep', 'both'
+theFiltering = 'neither'; % filter out features that are location or length-dependent:
+                          % 'neither', 'locdep', 'lengthdep', 'both'
 [~,filteredFileName] = doFilter(theGroups,theFiltering);
 filteredData = load(filteredFileName);
 
 %-------------------------------------------------------------------------------
 % Plot class distributions for some selected features
-
 featIDs = [16,... % RMS
-            6604,... % particularly distinguishes unc-9
-            2742,... % multiscale SampEn
-           3179,... % Distribution fit
-           4194,... % detrended fluctuation analysis
-           7777]; % SD1 HRV measure
+           6574,... % Wavelet measure quite specific to unc-9
+           4199]; % detrended fluctuation analysis
 
 for i = 1:length(featIDs)
     TS_SingleFeature(filteredData,featIDs(i),1,1);
 end
+
+%-------------------------------------------------------------------------------
+% The feature of interest in Figure:
+featID = 2748; % multiscale SampEn
+TS_SingleFeature(filteredData,featID,1,1);
 
 %-------------------------------------------------------------------------------
 % Compare to class distributions of mean speed:
