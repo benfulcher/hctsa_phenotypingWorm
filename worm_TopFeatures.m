@@ -12,16 +12,12 @@ filteredData = load(filteredFileName);
 % Plot class distributions for some selected features
 featIDs = [16,... % RMS
            6574,... % Wavelet measure quite specific to unc-9
+           2748,... % Multiscale SampEn
            4199]; % detrended fluctuation analysis
 
 for i = 1:length(featIDs)
     TS_SingleFeature(filteredData,featIDs(i),1,1);
 end
-
-%-------------------------------------------------------------------------------
-% The feature of interest in Figure:
-featID = 2748; % multiscale SampEn
-TS_SingleFeature(filteredData,featID,1,1);
 
 %-------------------------------------------------------------------------------
 % Compare to class distributions of mean speed:

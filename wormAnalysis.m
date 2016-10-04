@@ -36,9 +36,6 @@ else
 end
 TS_TopFeatures(filteredData,'fast_linear','numHistogramFeatures',40,'numNulls',numNulls)
 
-TS_TopFeatures(filteredData,'fast_linear','whatPlots','cluster','numHistogramFeatures',40);
-caxis([0.5,1])
-
 %-------------------------------------------------------------------------------
 % Produce an annotated PCA plot, noticing class structure
 doUserInput = 0; % switch on to annotate manually
