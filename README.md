@@ -10,3 +10,4 @@ Also requires the data file, HCTSA.mat, containing the results of *hctsa* featur
 * `wormAnal` contains the main steps for processing and analysis
 * `worm_TopFeatures` allows more in-depth plotting for individual features
 * `doFilter` contains a script for filtering different sets of features and normalizing
+* `paperMainTextFigures` reproduces the figures in the main text of the implementation paper
