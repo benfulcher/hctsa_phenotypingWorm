@@ -7,7 +7,7 @@ Note that the Hawaiian strain CB4856 is labeled as `H` in this dataset.
 Requires [hctsa](github.com/benfulcher/hctsa) to be installed and paths to this package added (through the `startup.m` script in hctsa).
 Also requires the data file, HCTSA.mat, containing the results of *hctsa* feature extraction (on figshare).
 
-* `wormAnal` contains the main steps for processing and analysis
+* `wormAnalysis` contains the main steps for processing and analysis
 * `worm_TopFeatures` allows more in-depth plotting for individual features
 * `doFilter` contains a script for filtering different sets of features and normalizing
 * `paperMainTextFigures` reproduces the figures in the main text of the implementation paper
