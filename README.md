@@ -1,6 +1,7 @@
 # hctsa_phenotypingWorm
 Running [hctsa](github.com/benfulcher/hctsa) analysis on movement speed data of five strains of the nematode worm *Caenorhabditis elegans*: the CB4856 (Hawaiian wild isolate), and N2 (lab) strains, and the mutants *dpy-20* (morphological mutant), *unc-9* (neural mutant), and *unc-38* (neural mutant).
-A summary of the analysis is [on bioRxiv](http://biorxiv.org/content/early/2016/10/17/081463)
+A summary of the analysis is [on bioRxiv](http://biorxiv.org/content/early/2016/10/17/081463).
+
 The data were very kindly provided by Andre Brown and Bertalan Gyenes, Imperial College London, and can be downloaded, along with all of the hctsa calculations [on figshare](https://dx.doi.org/10.4225/03/580478f951263)
 See [wormbase](wormbase.org) for more information about the data, including gene knockouts.
 Note that the Hawaiian strain CB4856 is labeled as `H` here.
