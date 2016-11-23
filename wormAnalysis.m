@@ -35,7 +35,7 @@ if doNull
 else
     numNulls = 0;
 end
-TS_TopFeatures(filteredData,'fast_linear','numHistogramFeatures',40,'numNulls',numNulls)
+TS_TopFeatures(filteredData,'fast_linear','numHistogramFeatures',32,'numNulls',numNulls)
 
 %-------------------------------------------------------------------------------
 %% Produce an annotated PCA plot, noticing class structure

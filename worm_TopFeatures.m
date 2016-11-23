@@ -15,8 +15,9 @@ featIDs = [16,... % RMS
            2748,... % Multiscale SampEn
            4199]; % detrended fluctuation analysis
 
+annotateParams = struct('maxL',10000);
 for i = 1:length(featIDs)
-    TS_SingleFeature(filteredData,featIDs(i),1,1);
+    TS_FeatureSummary(featIDs(i),filteredData,1,annotateParams)
 end
 
 %-------------------------------------------------------------------------------
