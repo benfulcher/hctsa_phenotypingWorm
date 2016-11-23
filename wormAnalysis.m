@@ -54,6 +54,6 @@ colorGroups = false; % can switch on to color strains differently
 TS_plot_DataMatrix(normalizedData,'colorGroups',colorGroups,'groupReorder',1)
 
 %-------------------------------------------------------------------------------
-%% Data in space of top 2 features? (slow):
-annotateParams = struct('n',12,'textAnnotation','none','userInput',0,'maxL',1500);
-TS_ForwardFS(normalizedData,[],'fast_linear',5,2,annotateParams);
+%% Data in space of top 2 features? (slow; not fully supported functionality):
+% annotateParams = struct('n',12,'textAnnotation','none','userInput',0,'maxL',1500);
+% TS_ForwardFS(normalizedData,[],'fast_linear',5,2,annotateParams);
