@@ -1,6 +1,5 @@
 %-------------------------------------------------------------------------------
-% Set parameters:
-%-------------------------------------------------------------------------------
+%% Process data
 % Set labels to assign to time series (strains/genotypes):
 theGroups = {'H','N2','dpy_20','unc_9','unc_38'}; % this is all of them.
 
@@ -15,20 +14,22 @@ normalizedData = load(normalizedFileName);
 filteredData = load(filteredFileName);
 
 %-------------------------------------------------------------------------------
-% Plot some examples of each class:
+%% Plot some examples of each class:
 numPerClass = 3;
 TS_plot_timeseries(normalizedData,numPerClass,[],[])
 
 %-------------------------------------------------------------------------------
-% Determine classification rate:
+%% Determine balanced classification rate using all features
+% (including confusion matrix)
 whatClassifier = 'svm_linear';
-doPCs = 0; % see whether similar classification accuracy can be gained using reduced PCs
+doPCs = false; % see whether similar classification accuracy can be gained using reduced PCs
 TS_classify(normalizedData,whatClassifier,doPCs)
 
 %-------------------------------------------------------------------------------
-% What are some of the top features?:
-doNull = 0; % switch on to compute null distribution and determine how many
-            % features are informative
+%% What are the top individual features for distinguishing strains?:
+doNull = false; % switch on (to true) to compute null distribution and
+                % determine how many features are statistically informative
+                % of strain
 if doNull
     numNulls = 50;
 else
@@ -37,20 +38,22 @@ end
 TS_TopFeatures(filteredData,'fast_linear','numHistogramFeatures',40,'numNulls',numNulls)
 
 %-------------------------------------------------------------------------------
-% Produce an annotated PCA plot, noticing class structure
+%% Produce an annotated PCA plot, noticing class structure
 doUserInput = 0; % switch on to annotate manually
 annotateParams = struct('n',12,'textAnnotation','none','userInput',0,'maxL',1500);
 TS_plot_pca(normalizedData,1,'',annotateParams)
 
 %-------------------------------------------------------------------------------
-% Visualize the data matrix colored by strain
+%% Visualize the time series x feature data matrix
 % (kind of requires TS_cluster to look nice, though, and then loading in the
-% clustered data):
+% clustered data; time series will be ordered by strain using groupReorder flag):
 TS_cluster('none',[],'corr_fast','average',[0,1],normalizedFileName);
-normalizedData = load(normalizedFileName); % re-load
-TS_plot_DataMatrix(normalizedData,'colorGroups',0,'groupReorder',1)
+normalizedData = load(normalizedFileName); % reload data containing clustering info
+
+colorGroups = false; % can switch on to color strains differently
+TS_plot_DataMatrix(normalizedData,'colorGroups',colorGroups,'groupReorder',1)
 
 %-------------------------------------------------------------------------------
-% Top feature space? (slow, not fully functional):
+%% Data in space of top 2 features? (slow):
 annotateParams = struct('n',12,'textAnnotation','none','userInput',0,'maxL',1500);
 TS_ForwardFS(normalizedData,[],'fast_linear',5,2,annotateParams);

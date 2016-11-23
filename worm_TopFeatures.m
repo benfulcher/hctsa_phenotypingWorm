@@ -1,7 +1,7 @@
 % Understand some selected features in more detail:
 
 %-------------------------------------------------------------------------------
-% Preliminary labeling, filtering, normalization
+%% Preliminary labeling, filtering, normalization
 theGroups = {'H','N2','dpy_20','unc_9','unc_38'}; % this is all of them.
 theFiltering = 'neither'; % filter out features that are location or length-dependent:
                           % 'neither', 'locdep', 'lengthdep', 'both'
@@ -9,7 +9,7 @@ theFiltering = 'neither'; % filter out features that are location or length-depe
 filteredData = load(filteredFileName);
 
 %-------------------------------------------------------------------------------
-% Plot class distributions for some selected features
+%% Plot class distributions for some selected features
 featIDs = [16,... % RMS
            6574,... % Wavelet measure quite specific to unc-9
            2748,... % Multiscale SampEn
@@ -20,7 +20,8 @@ for i = 1:length(featIDs)
 end
 
 %-------------------------------------------------------------------------------
-% Compare to class distributions of mean speed:
+%% Compare to class distributions of mean speed
+% (doesn't distinguish the neural mutants)
 load(filteredFileName,'Operations');
 isMean = find(strcmp({Operations.Name},'mean'));
 TS_SingleFeature(filteredData,isMean,1,1);
