@@ -10,5 +10,5 @@ In addition to the data file, `HCTSA.mat`, containing the results of *hctsa* fea
 
 * `wormAnalysis` contains the main steps for processing and analysis
 * `worm_TopFeatures` allows more in-depth plotting for individual features
-* `doFilter` contains a script for filtering different sets of features and normalizing
 * `paperMainTextFigures` reproduces the figures in the main text of the implementation paper
+* `doFilter` is a function for filtering different sets of features and normalizing
