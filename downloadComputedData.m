@@ -5,7 +5,7 @@ function downloadComputedData()
 url = 'https://ndownloader.figshare.com/files/6294369';
 fileName = 'HCTSA.mat';
 outFileName = websave(fileName,url);
-fprintf(1,'hctsa results for C. Elegans movement phenotyping downloaded to:\n%s\n',...
-                outFileName);
+fprintf(1,['hctsa results for C. Elegans movement phenotyping downloaded ',...
+            'from figshare to:\n%s\n'],outFileName);
 
 end
