@@ -39,8 +39,8 @@ TS_TopFeatures(filteredData,'fast_linear','numFeaturesDistr',32,'numNulls',numNu
 
 %-------------------------------------------------------------------------------
 %% Produce an annotated PCA plot, noticing class structure
-doUserInput = 0; % switch on to annotate manually
-annotateParams = struct('n',12,'textAnnotation','none','userInput',0,'maxL',1500);
+doUserInput = false; % switch on to annotate manually
+annotateParams = struct('n',12,'textAnnotation','none','userInput',doUserInput,'maxL',1500);
 TS_plot_pca(normalizedData,1,'',annotateParams)
 
 %-------------------------------------------------------------------------------
