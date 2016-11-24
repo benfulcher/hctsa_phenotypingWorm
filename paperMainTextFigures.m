@@ -1,5 +1,5 @@
 %-------------------------------------------------------------------------------
-%% Plot some examples of each class:
+%% PLOT SOME EXAMPLES OF EACH CLASS:
 %-------------------------------------------------------------------------------
 numPerClass = 3;
 TS_plot_timeseries('raw',numPerClass,[],[])
