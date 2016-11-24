@@ -11,7 +11,7 @@ theGroups = {'H','N2','dpy_20','unc_9','unc_38'}; % this is all of them.
 theFiltering = 'neither'; % 'neither', 'locdep', 'lengthdep', 'both'
 classVarFilter = 1; % remove features with zero variance within a labeled class
 [normalizedFileName,filteredFileName] = doFilter(theGroups,theFiltering,classVarFilter);
-TS_TopFeatures(filteredFileName,'fast_linear','whatPlots','cluster','numHistogramFeatures',40);
+TS_TopFeatures(filteredFileName,'fast_linear','whatPlots','cluster','numFeaturesDistr',40);
 caxis([0.5,1])
 
 %-------------------------------------------------------------------------------
