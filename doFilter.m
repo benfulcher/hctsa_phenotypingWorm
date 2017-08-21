@@ -4,7 +4,7 @@ function [normalizedFileName,filteredFileName] = doFilter(theGroups,theFiltering
 % Check inputs:
 %-------------------------------------------------------------------------------
 if nargin < 3
-    classVarFilter = 1; % features with zero variance within a labeled class are removed
+    classVarFilter = true; % features with zero variance within a labeled class are removed
 end
 
 %-------------------------------------------------------------------------------
