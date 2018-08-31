@@ -2,7 +2,7 @@
 %% PLOT SOME EXAMPLES OF EACH CLASS:
 %-------------------------------------------------------------------------------
 numPerClass = 3;
-TS_plot_timeseries('raw',numPerClass,[],[])
+TS_plot_timeseries('raw',numPerClass)
 
 %-------------------------------------------------------------------------------
 %% PRODUCE THE CLUSTERED CORRELATION MATRIX FOR THE TOP 40 FEATURES
@@ -17,6 +17,6 @@ caxis([0.5,1])
 %-------------------------------------------------------------------------------
 %% PLOT THE MULTISCALE SAMPEN MEASURE
 %-------------------------------------------------------------------------------
-% The feature of interest in Figure:
+% The feature of interest in the figure:
 featID = 2748; % multiscale SampEn
 TS_SingleFeature(filteredFileName,featID,true,true);

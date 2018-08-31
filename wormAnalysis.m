@@ -8,7 +8,7 @@ theFiltering = 'neither'; % 'neither', 'locdep', 'lengthdep', 'both'
 
 %-------------------------------------------------------------------------------
 % Filter features and normalize:
-classVarFilter = 1; % remove features with zero variance within a labeled class
+classVarFilter = true; % remove features with zero variance within a labeled class
 [normalizedFileName,filteredFileName] = doFilter(theGroups,theFiltering,classVarFilter);
 normalizedData = load(normalizedFileName);
 filteredData = load(filteredFileName);
@@ -16,7 +16,7 @@ filteredData = load(filteredFileName);
 %-------------------------------------------------------------------------------
 %% Plot some examples of time series from each class:
 numPerClass = 3;
-TS_plot_timeseries(normalizedData,numPerClass,[],[])
+TS_plot_timeseries(normalizedData,numPerClass)
 
 %-------------------------------------------------------------------------------
 %% Compute the balanced classification rate using all features

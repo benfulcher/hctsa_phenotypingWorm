@@ -24,6 +24,6 @@ end
 %% Compare to class distributions of mean speed
 % (doesn't distinguish the neural mutants)
 load(filteredFileName,'Operations');
-isMean = find(strcmp({Operations.Name},'mean'));
-TS_SingleFeature(filteredData,isMean,1,1);
+isMean = find(strcmp(Operations.Name,'mean'));
+TS_SingleFeature(filteredData,isMean,true,true);
 ylim([0,250])
