@@ -10,7 +10,7 @@ end
 %-------------------------------------------------------------------------------
 % Filter the time-series data to the restricted set of labels first:
 %-------------------------------------------------------------------------------
-[~,restrictedFileName] = TS_LabelGroups(theGroups,'raw',1,1);
+[~,restrictedFileName] = TS_LabelGroups('raw',theGroups,true,true);
 
 %-------------------------------------------------------------------------------
 % Remove length-dependent features -> HCTSA_notLocDep.mat

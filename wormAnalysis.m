@@ -22,8 +22,7 @@ TS_plot_timeseries(normalizedData,numPerClass,[],[])
 %% Compute the balanced classification rate using all features
 % (including confusion matrix)
 whatClassifier = 'svm_linear';
-doPCs = false; % see whether similar classification accuracy can be gained using reduced PCs
-TS_classify(normalizedData,whatClassifier,doPCs)
+TS_classify(normalizedData,whatClassifier,'numPCs',0);
 
 %-------------------------------------------------------------------------------
 %% What are the top individual features for distinguishing strains?:
@@ -38,7 +37,7 @@ if doNull
 else
     numNulls = 0;
 end
-TS_TopFeatures(filteredData,'fast_linear','numFeaturesDistr',numFeaturesDistr,...
+TS_TopFeatures(filteredData,whatStatistic,'numFeaturesDistr',numFeaturesDistr,...
                         'numNulls',numNulls)
 
 %-------------------------------------------------------------------------------
@@ -48,7 +47,7 @@ doUserInput = false; % switch on to annotate manually
 timeSeriesLength = 1500; % plot this many datapoints for time series annotations
 annotateParams = struct('n',numAnnotate,'textAnnotation','none',...
                 'userInput',doUserInput,'maxL',timeSeriesLength);
-TS_plot_pca(normalizedData,1,'',annotateParams)
+TS_plot_pca(normalizedData,true,'',annotateParams)
 
 %-------------------------------------------------------------------------------
 %% Visualize the time series x feature data matrix
@@ -59,7 +58,7 @@ normalizedData = load(normalizedFileName); % reload data containing clustering i
 groupReorder = true; % reorder rows (time series) by their group label
 colorGroups = false; % can switch on to color strains differently
 timeSeriesLength = 5000; % length of time series segments to show to the left of the plot
-TS_plot_DataMatrix(normalizedData,'colorGroups',colorGroups,'groupReorder',1,...
+TS_plot_DataMatrix(normalizedData,'colorGroups',colorGroups,'groupReorder',true,...
                     'timeSeriesLength',timeSeriesLength)
 % (Note: you can zoom in on the main color plot to look in more detail at
 % time series and features, especially on smaller screens)
