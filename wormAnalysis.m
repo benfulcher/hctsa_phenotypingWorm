@@ -41,13 +41,14 @@ TS_TopFeatures(filteredData,whatStatistic,'numFeaturesDistr',numFeaturesDistr,..
                         'numNulls',numNulls)
 
 %-------------------------------------------------------------------------------
-%% Produce an annotated PCA plot, noticing class structure
+%% Produce an annotated low-dimensional plot, noticing class structure
 numAnnotate = 8; % number of points to annotate with time series
+theAlgorithm = 'pca'; % 'pca','tSNE'
 doUserInput = false; % switch on to annotate manually
 timeSeriesLength = 1500; % plot this many datapoints for time series annotations
 annotateParams = struct('n',numAnnotate,'textAnnotation','none',...
                 'userInput',doUserInput,'maxL',timeSeriesLength);
-TS_plot_pca(normalizedData,true,'',annotateParams)
+TS_PlotLowDim(normalizedData,theAlgorithm,true,'',annotateParams);
 
 %-------------------------------------------------------------------------------
 %% Visualize the time series x feature data matrix
