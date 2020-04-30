@@ -36,9 +36,9 @@ end
 
 %-------------------------------------------------------------------------------
 % Now normalize:
-normalizedFileName = TS_normalize('scaledRobustSigmoid',[0.5,1],filteredFileName,classVarFilter);
+normalizedFileName = TS_Normalize('scaledRobustSigmoid',[0.5,1],filteredFileName,classVarFilter);
 % copyfile(filteredFileName,'HCTSA_filterConstant.mat');
 system(sprintf('cp %s HCTSA_filterConstant.mat',filteredFileName)); % if using non-bash shell
-filteredFileName = TS_normalize('none',[0.5,1],'HCTSA_filterConstant.mat',classVarFilter);
+filteredFileName = TS_Normalize('none',[0.5,1],'HCTSA_filterConstant.mat',classVarFilter);
 
 end

@@ -16,13 +16,13 @@ filteredData = load(filteredFileName);
 %-------------------------------------------------------------------------------
 %% Plot some examples of time series from each class:
 numPerClass = 3;
-TS_plot_timeseries(normalizedData,numPerClass)
+TS_PlotTimeSeries(normalizedData,numPerClass)
 
 %-------------------------------------------------------------------------------
 %% Compute the balanced classification rate using all features
 % (including confusion matrix)
 whatClassifier = 'svm_linear';
-TS_classify(normalizedData,whatClassifier,'numPCs',0);
+TS_Classify(normalizedData,whatClassifier,'numPCs',0);
 
 %-------------------------------------------------------------------------------
 %% What are the top individual features for distinguishing strains?:
@@ -54,12 +54,12 @@ TS_PlotLowDim(normalizedData,theAlgorithm,true,'',annotateParams);
 %% Visualize the time series x feature data matrix
 % (kind of requires TS_cluster to look nice, though, and then loading in the
 % clustered data; time series will be ordered by strain using groupReorder flag):
-TS_cluster('none',[],'corr_fast','average',[0,1],normalizedFileName);
+TS_Cluster('none',[],'corr_fast','average',[0,1],normalizedFileName);
 normalizedData = load(normalizedFileName); % reload data containing clustering info
 groupReorder = true; % reorder rows (time series) by their group label
 colorGroups = false; % can switch on to color strains differently
 timeSeriesLength = 5000; % length of time series segments to show to the left of the plot
-TS_plot_DataMatrix(normalizedData,'colorGroups',colorGroups,'groupReorder',true,...
+TS_PlotDataMatrix(normalizedData,'colorGroups',colorGroups,'groupReorder',true,...
                     'timeSeriesLength',timeSeriesLength)
 % (Note: you can zoom in on the main color plot to look in more detail at
 % time series and features, especially on smaller screens)
