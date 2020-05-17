@@ -15,8 +15,8 @@ end
 %-------------------------------------------------------------------------------
 % Remove length-dependent features -> HCTSA_notLocDep.mat
 %-------------------------------------------------------------------------------
-[ID_lengthDep,ID_notlengthDep] = TS_getIDs('lengthdep',restrictedFileName,'ops');
-[ID_locDep,ID_notlocDep] = TS_getIDs('locdep',restrictedFileName,'ops');
+[ID_lengthDep,ID_notlengthDep] = TS_GetIDs('lengthdep',restrictedFileName,'ops');
+[ID_locDep,ID_notlocDep] = TS_GetIDs('locdep',restrictedFileName,'ops');
 
 switch theFiltering
 case 'neither'
