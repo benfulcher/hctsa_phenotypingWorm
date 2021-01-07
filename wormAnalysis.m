@@ -21,15 +21,18 @@ TS_PlotTimeSeries(normalizedData,numPerClass)
 %-------------------------------------------------------------------------------
 %% Compute the balanced classification rate using all features
 % (including confusion matrix)
-whatClassifier = 'svm_linear';
-TS_Classify(normalizedData,whatClassifier,'numPCs',0);
+% Set up default classification parameters:
+cfnParams = GiveMeDefaultClassificationParams(normalizedData.TimeSeries);
+cfnParams.whatClassifier = 'svm_linear';
+numNulls = 10; % compare against an ensemble of randomized labels
+TS_Classify(normalizedData,cfnParams,numNulls);
 
 %-------------------------------------------------------------------------------
 %% What are the top individual features for distinguishing strains?:
 doNull = false; % switch on (to true) to compute null distribution and
                 % determine how many features are statistically informative
                 % of strain
-whatStatistic = 'fast_linear'; % Use balanced linear classification rate as feature statistic
+cfnParams.whatClassifier = 'fast_linear'; % Use balanced linear classification rate as feature statistic
 numFeaturesDistr = 32; % number of top features to plot distributions for
 
 if doNull
@@ -37,7 +40,7 @@ if doNull
 else
     numNulls = 0;
 end
-TS_TopFeatures(filteredData,whatStatistic,'numFeaturesDistr',numFeaturesDistr,...
+TS_TopFeatures(filteredData,'classification',cfnParams,'numFeaturesDistr',numFeaturesDistr,...
                         'numNulls',numNulls)
 
 %-------------------------------------------------------------------------------
@@ -48,7 +51,7 @@ doUserInput = false; % switch on to annotate manually
 timeSeriesLength = 1500; % plot this many datapoints for time series annotations
 annotateParams = struct('n',numAnnotate,'textAnnotation','none',...
                 'userInput',doUserInput,'maxL',timeSeriesLength);
-TS_PlotLowDim(normalizedData,theAlgorithm,true,'',annotateParams);
+TS_PlotLowDim(normalizedData,theAlgorithm,true,annotateParams,'');
 
 %-------------------------------------------------------------------------------
 %% Visualize the time series x feature data matrix

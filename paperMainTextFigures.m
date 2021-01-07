@@ -2,7 +2,7 @@
 %% PLOT SOME EXAMPLES OF EACH CLASS:
 %-------------------------------------------------------------------------------
 numPerClass = 3;
-TS_plot_timeseries('raw',numPerClass)
+TS_PlotTimeSeries('raw',numPerClass)
 
 %-------------------------------------------------------------------------------
 %% PRODUCE THE CLUSTERED CORRELATION MATRIX FOR THE TOP 40 FEATURES
@@ -11,7 +11,9 @@ theGroups = {'H','N2','dpy_20','unc_9','unc_38'}; % this is all of them.
 theFiltering = 'neither'; % 'neither', 'locdep', 'lengthdep', 'both'
 classVarFilter = true; % remove features with zero variance within a labeled class
 [normalizedFileName,filteredFileName] = doFilter(theGroups,theFiltering,classVarFilter);
-TS_TopFeatures(filteredFileName,'fast_linear','whatPlots','cluster','numFeaturesDistr',40);
+cfnParams = GiveMeDefaultClassificationParams(normalizedFileName);
+cfnParams.whatClassifier = 'fast_linear';
+TS_TopFeatures(filteredFileName,'classification',cfnParams,'whatPlots','cluster','numFeaturesDistr',40);
 caxis([0.5,1])
 
 %-------------------------------------------------------------------------------
